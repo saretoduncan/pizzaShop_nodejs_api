@@ -42,8 +42,7 @@ export const loginValidation = () => {
       .normalizeEmail({ "gmail_remove_dots": false }),
     body("password")
       .trim()
-      .isLength(6)
-      .withMessage("password length is short, minimum of 6 characters"),
+      
     
   ];
 };
