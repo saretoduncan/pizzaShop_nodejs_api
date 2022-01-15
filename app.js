@@ -1,5 +1,5 @@
 import express from "express"
-import userRoutes from './src/routes/userRoutes.js'
+import userRoutes from './src/routes/authRoute.js'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 
