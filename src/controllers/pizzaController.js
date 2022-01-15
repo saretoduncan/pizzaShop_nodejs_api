@@ -1,4 +1,4 @@
-import { Pizza, Toppings } from "../models/Useschema.js";
+import { Pizza } from "../models/Useschema.js";
 
 //add pizza to db
 export const addPizza = async (req, res) => {
@@ -91,9 +91,9 @@ export const updatePizza = async (req, res) => {
 //delete
 export const deleteById = async (req, res) => {
   const { id } = req.params;
-  
+
   try {
-    const pizza = await Pizza.deleteOne({_id:id});
+    const pizza = await Pizza.deleteOne({ _id: id });
     res.json(pizza);
   } catch (err) {
     res.json(err.json);
@@ -101,10 +101,10 @@ export const deleteById = async (req, res) => {
 };
 //delete all pizza
 export const deleteAllPizza = async (req, res) => {
-    console.log("name");
+  console.log("name");
   try {
     const deleteAll = await Pizza.deleteMany({});
-    res.json(deleteAll)
+    res.json(deleteAll);
   } catch (err) {
     res.json(err.message);
   }
