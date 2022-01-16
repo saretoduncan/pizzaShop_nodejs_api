@@ -2,9 +2,9 @@ import { Pizza } from "../models/Useschema.js";
 
 //add pizza to db
 export const addPizza = async (req, res) => {
-  const { type, small, medium, large } = req.body;
+  const { crust, small, medium, large } = req.body;
   const newPizza = new Pizza({
-    pizzaType: type,
+    pizzaCrust: crust,
     sizePrice: {
       small: small,
       medium: medium,
@@ -41,11 +41,14 @@ export const getPizzaById = async (req, res) => {
 //update pizza
 export const updatePizza = async (req, res) => {
   const { id } = req.params;
-  const { type, small, medium, large } = req.body;
+  const { crust, small, medium, large } = req.body;
   try {
     let pizza;
-    if (type) {
-      pizza = await Pizza.updateOne({ _id: id }, { $set: { pizzaType: type } });
+    if (crust) {
+      pizza = await Pizza.updateOne(
+        { _id: id },
+        { $set: { pizzaCrust: crust } },
+      );
     }
     if (small) {
       pizza = await Pizza.updateOne(

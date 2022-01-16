@@ -15,7 +15,7 @@ routes.get("/", getAllPizza); //get all pizza
 routes.get("/:id", getPizzaById); //get pizza by id
 routes.patch("/update/:id", updatePizza); //update pizza
 routes.delete("/:id", deleteById); // delete pizza by id
-routes.delete("/removePizza", deleteAllPizza); //delete all pizza
+routes.delete("/", deleteAllPizza); //delete all pizza
 /**toppings */
 
 export default routes;

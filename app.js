@@ -1,6 +1,7 @@
 import express from "express"
 import userRoutes from './src/routes/authRoute.js'
 import toppingRoutes from './src/routes/toppings.js'
+import cartRoutes from './src/routes/cart.js'
 import pizzaRoutes from './src/routes/pizza.js'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
@@ -19,7 +20,8 @@ app.use(express.json());
 app.use('/api/user', userRoutes);
 app.use('/admin', adminRouter);
 app.use('/api/pizza',pizzaRoutes )
-app.use('/api/toppings',toppingRoutes)
+app.use('/api/toppings',toppingRoutes);
+app.use('/api/cart', cartRoutes);
 
 //connect to database
 mongoose.connect (process.env.DB_CONNECTION,()=>{

@@ -11,11 +11,11 @@ routes.post("/register", signUpValidation(), validate,signUp )
 routes.post("/login",loginValidation(),validate,logIn);
 
 //get all user
-routes.get("/getAllUsers",  async (req, res) => {
+routes.get("/getUserbyToken", tokenVerify, async (req, res) => {
   try {
-    const allUsers = await User.find();
-    console.log(req.user._id)
-    res.json(allUsers);
+    const user = await User.findOne({_id:req.user._id});
+    
+    res.json(user);
     
   } catch (err) {
     res.json(err.msg);
