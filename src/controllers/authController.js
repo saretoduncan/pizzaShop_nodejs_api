@@ -19,7 +19,11 @@ export const signUp = async (req, res) => {
   });
   try {
     const savedUser = await user.save(); //save user to db
-    res.json(savedUser);
+   
+    res.json({
+      name:savedUser.name,
+      email:savedUser.email
+    });
   } catch (err) {
     res.json(err.message);
   }

@@ -6,7 +6,7 @@ import sendEmail from "../mail/mail.js"
 //add to cart
 export const addToCart = async (req, res) => {
   const userId = req.user._id;
-  const { pizzaId, pizzaSize, toppingId, paid } = req.body;
+  const { pizzaId, pizzaSize, toppingId} = req.body;
 
   try {
     let cart;
@@ -85,7 +85,7 @@ export const deleteCartByid = async (req, res) => {
 };
 //delete cart by auth
 export const deleteCartByAuth = async (req, res) => {
-  const { id } = res.params;
+  const { id } = req.params;
   try {
     const cart = await Cart.deleteOne({ _id: id });
     res.json(cart);
