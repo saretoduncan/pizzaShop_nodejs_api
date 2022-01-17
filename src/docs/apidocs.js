@@ -1,4 +1,16 @@
-import { createUserBody, createUser,loginUser, loginUserBody } from "./userdocs.js";
+import {
+  createUserBody,
+  createUser,
+  loginUser,
+  loginUserBody,
+} from "./userdocs.js";
+import {
+  addItemToCart,
+  addToCart,
+  getCartItems,
+  deleteCartItem,
+  getTotalAmout,
+} from "./cartdocs.js";
 const apiDocumentation = {
   openapi: "3.0.0",
   info: {
@@ -26,21 +38,35 @@ const apiDocumentation = {
     "/api/user/register": {
       post: createUser,
     },
-    "/api/user/login":{
-        post:loginUser
-    }
+    "/api/user/login": {
+      post: loginUser,
+    },
+    "/api/cart": {
+      post: addToCart,
+    },
+    "/api/cart/user": {
+      get: getCartItems,
+    
+    },
+    "/api/cart/total": {
+      get: getTotalAmout,
+    },
+    "/api/cart/user/{id}": {
+      delete: deleteCartItem,
+    },
   },
   components: {
     securitySchemes: {
-        bearerAuth: {
-          type: 'http',
-          scheme: 'bearer',
-          bearerFormat: 'JWT',
-        },
+      bearerAuth: {
+        type: "http",
+        scheme: "bearer",
+        bearerFormat: "JWT",
       },
+    },
     schemas: {
       createUserBody,
-      loginUserBody
+      loginUserBody,
+      addItemToCart,
     },
   },
 };
