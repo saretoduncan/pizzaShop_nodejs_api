@@ -2,6 +2,7 @@ import { Cart } from "../models/Useschema.js";
 import { User } from "../models/Useschema.js";
 import { Pizza } from "../models/Useschema.js";
 import { Toppings } from "../models/Useschema.js";
+import sendEmail from "../mail/mail.js"
 //add to cart
 export const addToCart = async (req, res) => {
   const userId = req.user._id;
@@ -116,6 +117,58 @@ export const totalAmount = async (req, res) => {
     res.json({ total: total });
 
     // res.json(cart);
+  } catch (err) {
+    res.json(err.message);
+  }
+};
+//payment
+export const payment = async (req, res) => {
+  const userId = req.user._id;
+  try {
+    const paidUpdate = await Cart.updateMany(
+      { personId: userId },
+      {
+        $set: {
+          paid: true,
+        },
+      },
+    );
+    const user = await User.findOne({_id:userId});
+    const {email, name}= user;
+    const cart = await Cart.find({ personId: userId });
+    let total = 0;
+    let order = [];
+    cart.forEach((cart) => {
+      const {
+        pizzaAmount,
+        toppingsPrice,
+        pizzaCrust,
+        pizzaSize,
+        toppingName,
+        paid,
+      } = cart;
+
+      (total += pizzaAmount), toppingsPrice;
+      const finalOrder = {
+        crust: pizzaCrust,
+        size: pizzaSize,
+        Crust_cost: pizzaAmount,
+        topping: toppingName,
+        Topping_cost: toppingsPrice,
+        paid: paid,
+      };
+
+      total += pizzaAmount + toppingsPrice;
+      order.push(finalOrder);
+    
+    });
+     
+    const finalOrder = {
+      order: order,
+      total: total,
+    };
+    sendEmail(email, "pizza payment recipt", finalOrder);
+    res.json(finalOrder);
   } catch (err) {
     res.json(err.message);
   }
