@@ -11,6 +11,8 @@ import {
   deleteCartItem,
   getTotalAmout,
 } from "./cartdocs.js";
+import { getAllToppings } from "./toppingsdocs.js";
+import { getAllPizza } from "./pizzadocs.js";
 const apiDocumentation = {
   openapi: "3.0.0",
   info: {
@@ -27,6 +29,14 @@ const apiDocumentation = {
     {
       name: "Users",
       description: "user authentication",
+    },
+    {
+      name: "Pizza Crust",
+      description: "Get all pizza Crusts",
+    },
+    {
+      name: "Toppings",
+      description: "Pizza toppings e.g braccoli",
     },
     {
       name: "Cart",
@@ -46,13 +56,19 @@ const apiDocumentation = {
     },
     "/api/cart/user": {
       get: getCartItems,
-    
     },
     "/api/cart/total": {
       get: getTotalAmout,
     },
+
     "/api/cart/user/{id}": {
       delete: deleteCartItem,
+    },
+    "/api/toppings": {
+      get: getAllToppings,
+    },
+    "/api/pizza": {
+      get: getAllPizza,
     },
   },
   components: {

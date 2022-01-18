@@ -113,123 +113,124 @@ const getCartItems = {
     },
   },
 };
-const getTotalAmout={
-    tags: ["Cart"],
-    description: "get total amount of items in the cart",
-    operationId: "getTotalAmout",
-    parameters: [
-      {
-        name: "auth_token",
-        in: "header",
-        description: "openIdAuthToken",
-        required: true,
-        type: "string",
-      },
-    ],
-  
-    responses: {
-      201: {
-        "application/json": {
-          content: {
-            data: [
-              {
-                _id: {
-                  type: "string",
-                  description: "itemId",
-                  example: "lksjdoijaklnfdhjoajlkd",
-                },
-                personId: {
-                  type: "string",
-                  description: "user id",
-                  example: "lksjdoijaklnfdhjoajlkd",
-                },
-                userName: {
-                  type: "string",
-                  example: "john",
-                },
-                email: {
-                  type: "string",
-                  example: "john@example.com",
-                },
-                pizzaCrust: {
-                  type: "string",
-                  example: "cheese pizza",
-                },
-                pizzaSize: {
-                  type: "string",
-                  example: "large",
-                },
-                pizzaAmount: {
-                  type: "integer",
-                  example: 1200,
-                },
+const getTotalAmout = {
+  tags: ["Cart"],
+  description: "get total amount of items in the cart",
+  operationId: "getTotalAmout",
+  parameters: [
+    {
+      name: "auth_token",
+      in: "header",
+      description: "openIdAuthToken",
+      required: true,
+      type: "string",
+    },
+  ],
+
+  responses: {
+    201: {
+      "application/json": {
+        content: {
+          data: [
+            {
+              _id: {
+                type: "string",
+                description: "itemId",
+                example: "lksjdoijaklnfdhjoajlkd",
               },
-            ],
-          },
+              personId: {
+                type: "string",
+                description: "user id",
+                example: "lksjdoijaklnfdhjoajlkd",
+              },
+              userName: {
+                type: "string",
+                example: "john",
+              },
+              email: {
+                type: "string",
+                example: "john@example.com",
+              },
+              pizzaCrust: {
+                type: "string",
+                example: "cheese pizza",
+              },
+              pizzaSize: {
+                type: "string",
+                example: "large",
+              },
+              pizzaAmount: {
+                type: "integer",
+                example: 1200,
+              },
+            },
+          ],
         },
       },
     },
-}
+  },
+};
 const deleteCartItem = {
-    tags: ["Cart"],
-    description: "Delete an item from the cart",
-    operationId: "deleteCart",
-    security: [
-      {
-        bearerAuth: [],
-      },
-    ],
-    parameters: [
-      {
-        name: "id",
-        in: "path",
-        description: "User ID",
-        required: true,
-        type: "string",
-      },
-      {
-        name: "auth_token",
-        in: "header",
-        description: "openIdAuthToken",
-        required: true,
-        type: "string",
-      },
-    ],
-    responses: {
-      200: {
-        description: "User deleted successfully!",
-        content: {
-          "application/json": {
-            schema: {
-              type: "object",
-              properties: {
-                message: {
-                  type: "string",
-                  example: "User deleted successfully!",
-                },
-              },
-            },
-          },
-        },
-      },
-      500: {
-        description: "Internal Server Error",
-        content: {
-          "application/json": {
-            schema: {
-              type: "object",
-              properties: {
-                message: {
-                  type: "string",
-                  example: "Internal Server Error",
-                },
+  tags: ["Cart"],
+  description: "Delete an item from the cart",
+  operationId: "deleteCart",
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
+  parameters: [
+    {
+      name: "id",
+      in: "path",
+      description: "User ID",
+      required: true,
+      type: "string",
+    },
+    {
+      name: "auth_token",
+      in: "header",
+      description: "openIdAuthToken",
+      required: true,
+      type: "string",
+    },
+  ],
+  responses: {
+    200: {
+      description: "User deleted successfully!",
+      content: {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: {
+              message: {
+                type: "string",
+                example: "User deleted successfully!",
               },
             },
           },
         },
       },
     },
-  };
+    500: {
+      description: "Internal Server Error",
+      content: {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: {
+              message: {
+                type: "string",
+                example: "Internal Server Error",
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+};
+
 const addItemToCart = {
   type: "object",
   properties: {
@@ -248,4 +249,11 @@ const addItemToCart = {
     },
   },
 };
-export { addItemToCart, addToCart, getCartItems,getTotalAmout,deleteCartItem };
+export {
+  addItemToCart,
+  addToCart,
+  getCartItems,
+  getTotalAmout,
+  deleteCartItem,
+  
+};

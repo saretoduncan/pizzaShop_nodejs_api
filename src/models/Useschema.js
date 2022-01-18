@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+const adminSchema={}
 const userSchema = mongoose.Schema({
   name: {
     type: String,
