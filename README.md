@@ -1,7 +1,7 @@
 # nodejs_idGenerator
  This a rest api for a pizza store.
 <div>
-<img src="./src/images/idgen.png"></div>
+<img src="./src/images/pizzabackend.png"></div>
 
 ## Built With
 
@@ -26,13 +26,13 @@ A computer with a working and up to date web browser.
 - Run npm install
 
 ```
-$ git clone https://github.com/saretoduncan/nodejs_idgenerator.git
-$ cd nodejs_idgenerator
+$ git clone https://github.com/saretoduncan/pizzaShop_nodejs_api.git
+$ cd pizzaShop_nodejs_api
 $ npm install
 
 ```
 ### Live Link & Documentation
-- https://useridgenerator.herokuapp.com/api-docs/
+- https://pizzastorebackendapi.herokuapp.com/api-docs
 
 ## Author
 
