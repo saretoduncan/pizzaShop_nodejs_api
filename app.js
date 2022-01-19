@@ -9,7 +9,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import swaggerUi from "swagger-ui-express";
 import { apiDocumentation } from "./src/docs/apidocs.js";
-import { adminRouter, adminJs } from "./src/routes/adminRouter.js";
+
 //swaggerConfig
 
 const app = express();
@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(cors());
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(apiDocumentation));
 app.use("/api/user", userRoutes);
-app.use(adminJs.options.rootPath, adminRouter);
+
 app.use("/api/pizza", pizzaRoutes);
 app.use("/api/toppings", toppingRoutes);
 app.use("/api/cart", cartRoutes);
