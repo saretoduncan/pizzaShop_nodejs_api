@@ -183,7 +183,7 @@ const deleteCartItem = {
     {
       name: "id",
       in: "path",
-      description: "User ID",
+      description: "Item ID",
       required: true,
       type: "string",
     },
@@ -255,5 +255,4 @@ export {
   getCartItems,
   getTotalAmout,
   deleteCartItem,
-  
 };
