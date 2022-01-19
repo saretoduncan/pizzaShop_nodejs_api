@@ -2,11 +2,11 @@ import { Cart } from "../models/Useschema.js";
 import { User } from "../models/Useschema.js";
 import { Pizza } from "../models/Useschema.js";
 import { Toppings } from "../models/Useschema.js";
-import sendEmail from "../mail/mail.js"
+import sendEmail from "../mail/mail.js";
 //add to cart
 export const addToCart = async (req, res) => {
   const userId = req.user._id;
-  const { pizzaId, pizzaSize, toppingId} = req.body;
+  const { pizzaId, pizzaSize, toppingId } = req.body;
 
   try {
     let cart;
@@ -109,9 +109,10 @@ export const totalAmount = async (req, res) => {
     const cart = await Cart.find({ personId: userId });
     let total = 0;
     cart.forEach((cart) => {
-      const { pizzaAmount, toppingsPrice } = cart;
-
-      (total += pizzaAmount), toppingsPrice;
+      const { pizzaAmount, toppingsPrice, paid } = cart;
+      if (!paid) {
+        total += pizzaAmount + toppingsPrice;
+      }
     });
 
     res.json({ total: total });
@@ -125,6 +126,7 @@ export const totalAmount = async (req, res) => {
 export const payment = async (req, res) => {
   const userId = req.user._id;
   try {
+    
     const paidUpdate = await Cart.updateMany(
       { personId: userId },
       {
@@ -133,8 +135,11 @@ export const payment = async (req, res) => {
         },
       },
     );
-    const user = await User.findOne({_id:userId});
-    const {email, name}= user;
+    const user = await User.findOne({ _id: userId });
+    const { email, name } = user;
+   
+
+   
     const cart = await Cart.find({ personId: userId });
     let total = 0;
     let order = [];
@@ -160,9 +165,9 @@ export const payment = async (req, res) => {
 
       total += pizzaAmount + toppingsPrice;
       order.push(finalOrder);
-    
+      
     });
-     
+
     const finalOrder = {
       order: order,
       total: total,

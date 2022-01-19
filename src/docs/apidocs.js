@@ -57,7 +57,7 @@ const apiDocumentation = {
     "/api/cart/user": {
       get: getCartItems,
     },
-    "/api/cart/total": {
+    "/api/user/total": {
       get: getTotalAmout,
     },
 
