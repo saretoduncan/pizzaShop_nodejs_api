@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const adminSchema={}
+const adminSchema = {};
 const userSchema = mongoose.Schema({
   name: {
     type: String,
@@ -23,9 +23,13 @@ const pizzaSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  picture: {
+  pizzaImg: {
     type: String,
-    required: false,
+    required: true,
+  },
+  cloudinary_id: {
+    type: String,
+    required: true,
   },
   sizePrice: {
     small: {
@@ -86,10 +90,10 @@ const cartSchema = mongoose.Schema({
     default: 0,
     require: false,
   },
-  paid:{
-    type:Boolean,
+  paid: {
+    type: Boolean,
     default: false,
-  }
+  },
 });
 export const User = mongoose.model("User", userSchema);
 export const Toppings = mongoose.model("Toppings", toppingSchema);

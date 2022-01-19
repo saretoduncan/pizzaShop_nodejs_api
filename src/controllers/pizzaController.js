@@ -1,17 +1,22 @@
 import { Pizza } from "../models/Useschema.js";
-
+import { cloudinary } from "../utils/cloudinary.js";
 //add pizza to db
 export const addPizza = async (req, res) => {
-  const { crust, small, medium, large } = req.body;
-  const newPizza = new Pizza({
-    pizzaCrust: crust,
-    sizePrice: {
-      small: small,
-      medium: medium,
-      large: large,
-    },
-  });
+  const { crust, small, medium, large } = JSON.parse(req.body.pizza_info); //getting form data
+
   try {
+    const imageResult = await cloudinary.uploader.upload(req.file.path);
+
+    const newPizza = new Pizza({
+      pizzaCrust: crust,
+      pizzaImg: imageResult.secure_url,
+      cloudinary_id: imageResult.public_id,
+      sizePrice: {
+        small: small,
+        medium: medium,
+        large: large,
+      },
+    });
     const savedPizza = await newPizza.save();
     res.json(savedPizza);
   } catch (err) {
