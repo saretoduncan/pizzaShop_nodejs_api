@@ -1,4 +1,4 @@
-# nodejs_idGenerator
+# pizzaShop_nodejs_api
  This a rest api for a pizza store.
 <div>
 <img src="./src/images/pizzabackend.png"></div>
